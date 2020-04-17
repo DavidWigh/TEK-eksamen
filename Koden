@@ -1,1 +1,68 @@
-yeehaw
+int niveau = 3;
+int test = 0;
+
+void setup(){
+  size(800,1000);
+  background(0);
+}
+
+void draw(){
+  
+  
+  
+  if(test == 0){
+    String[] rr = pmgdFunktion("/");
+    print(""+rr[0]+" "+rr[1]);
+  }
+  test = 1;
+}
+
+
+
+
+String[] pmgdFunktion (String pmgd){
+  int a = 1;
+  int b = 0;
+  int c = 3;
+  String result = "";
+  String regnestykke = "";
+  
+  if(niveau == 1){
+    a = int(random(0,10));
+    b = int(random(0,10));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }else if(niveau == 2){
+    a = int(random(10,100));
+    b = int(random(10,100));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }else if(niveau == 3){
+    a = int(random(100,1000));
+    b = int(random(100,1000));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }
+  
+  if(pmgd=="+"){
+    result = ""+(a+b);
+    regnestykke = ""+a+"+"+b;
+  }else if(pmgd=="-"){
+    result = ""+(a-b);
+    regnestykke = ""+a+"-"+b;
+  }else if(pmgd=="*"){
+    result = ""+(a*c);
+    regnestykke = ""+a+"*"+c;
+  }else if(pmgd=="/"){
+    result = ""+(a/c);
+    regnestykke = ""+a+"/"+c;
+  }else{
+    print("fejl i pmgd");
+  }
+  String[] rOgR = {""+regnestykke,""+result};
+  
+  return(rOgR);
+}
