@@ -114,7 +114,7 @@ void draw(){
  
   
     if(test == 0){
-      String[] rr = pmgdFunktion("/");
+      String[] rr = brokFunktion();
       print(""+rr[0]+" "+rr[1]);
    }
     test = 1;
@@ -287,3 +287,63 @@ String[] geometriFunktion (){
   String[] rOgR = {""+regnestykke,""+result,""+altResult};
   return(rOgR);
 }
+
+
+
+
+
+
+String[] brokFunktion (){
+  String regnestykke ="";
+  String result ="";
+  int a = 1 ;
+  int b;
+  int c = 3;
+  int d;
+  int e;
+  
+  if(niveau == 1){
+    a = int(random(1,10));
+    b = int(random(1,a));
+    c = int(random(1,10));
+    d = floor(random(1,1.9));
+    if(d == 0){
+      regnestykke = ""+b+"/"+a;
+      result = ""+b/a;
+    }else if(d == 1){
+      regnestykke = ""+b+"/"+a+"*"+c;
+      result = ""+(b*c)+"/"+a;
+    }
+  }else if(niveau == 2){
+    a = int(random(1,10));
+    b = int(random(1,a));
+    if(b%c != 0){
+      c = int(random(1,a));
+    }
+    d = floor(random(1,1.9));
+    if(d == 0){
+      regnestykke = ""+b/a;
+      result = ""+b+"/"+a;
+    }else if(d == 1){
+      regnestykke = ""+b+"/"+a+"*"+c;
+      result = ""+(b/c)+"/"+a;
+    }
+  }else if(niveau == 3){
+    a = int(random(1,10));
+    b = int(random(1,a));
+    c = int(random(1,10));
+    d = int(random(1,c));
+    e = floor(random(1,1.9));
+    if(e == 0){
+      regnestykke = ""+b+"/"+a+"+"+d+"/"+c;
+      result = ""+((b*c)+(d*a))+"/"+(a*c);
+    }else if(e == 1){
+      regnestykke = ""+b+"/"+a+"-"+d+"/"+c;
+      result = ""+((b*c)-(d*a))+"/"+(a*c);
+    }
+  }
+  
+  String[] rOgR = {""+regnestykke,""+result};
+  return(rOgR);
+}
+
