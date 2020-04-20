@@ -63,7 +63,7 @@ void draw(){
     text("start spil",325,800);
   }
   
-  if(deathscreen == false && startmenu == false){
+  if(deathscreen == false && menuscreen == false){
  
   
     if(test == 0){
