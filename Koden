@@ -1,1 +1,132 @@
-yeehaw
+boolean Deathscreen = true;
+boolean Menuscreen = false;
+int Score = int(random(1,2000));
+int HighScore = int(random(2000,3000));
+int niveau = 3;
+int test = 0;
+
+
+void setup(){
+  size(800,1000);
+  frameRate(60);
+}
+
+void draw(){
+background(0);
+  if(Deathscreen == true){
+    textSize(32);
+    text("Highscore:",50,50);
+    text("Score:",50,100);
+    text(HighScore,250,50);
+    text(Score,250,100);
+    text("Game Over",325,500);
+    text("Tryk på en vilkårlig tast for at starte forfra",75,550);
+    fill(255);
+    if(keyPressed == true||mousePressed==true){
+      Deathscreen = false;
+      fill(0);
+      rect(0,0,800,1000);
+      Menuscreen = true;
+    }
+  }
+  if(Menuscreen==true){
+    fill(0);
+    stroke(255);
+    rect(30,64,415,44);
+    rect(30,128,415,44);
+    rect(30,192,415,44);
+    rect(30,256,415,44);
+    rect(30,320,415,44);    
+    
+    fill(255);
+    textSize(32);
+    text("Start",10,32);
+    text("multiplikation",35,96);
+    text("division",35,160);
+    text("addition og subtrahering",35,224);
+    text("brøker og decimalregning",35,288);
+    text("geometri",35,352);
+  }
+  
+  if(test == 0){
+    String[] rr = pmgdFunktion("/");
+    print(""+rr[0]+" "+rr[1]);
+  }
+  test = 1;
+}
+
+void mouseClicked(){
+  if(mouseX>30&&mouseX<445&&mouseY>64&&mouseY<108){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>128&&mouseY<172){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>192&&mouseY<236){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>256&&mouseY<300){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>320&&mouseY<364){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+}
+
+
+String[] pmgdFunktion (String pmgd){
+  int a = 1;
+  int b = 0;
+  int c = 3;
+  String result = "";
+  String regnestykke = "";
+  
+  if(niveau == 1){
+    a = int(random(0,10));
+    b = int(random(0,10));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }else if(niveau == 2){
+    a = int(random(10,100));
+    b = int(random(10,100));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }else if(niveau == 3){
+    a = int(random(100,1000));
+    b = int(random(100,1000));
+    while(a%c != 0){
+      c = int(random(1,10));
+    }
+  }
+  
+  if(pmgd=="+"){
+    result = ""+(a+b);
+    regnestykke = ""+a+"+"+b;
+  }else if(pmgd=="-"){
+    result = ""+(a-b);
+    regnestykke = ""+a+"-"+b;
+  }else if(pmgd=="*"){
+    result = ""+(a*c);
+    regnestykke = ""+a+"*"+c;
+  }else if(pmgd=="/"){
+    result = ""+(a/c);
+    regnestykke = ""+a+"/"+c;
+  }else{
+    print("fejl i pmgd");
+  }
+  String[] rOgR = {""+regnestykke,""+result};
+  
+  return(rOgR);
+}
