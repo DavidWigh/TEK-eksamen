@@ -1,1 +1,175 @@
-yeehaw
+float px = 400;
+float py = 880;
+float skudx, skudy;
+boolean skyd;
+
+//4 række
+Enemy enemy1;
+Enemy enemy2;
+Enemy enemy3;
+Enemy enemy4;
+Enemy enemy5;
+
+//3 række
+Enemy enemy6;
+Enemy enemy7;
+Enemy enemy8;
+Enemy enemy9;
+Enemy enemy10;
+
+//2 række
+Enemy enemy11;
+Enemy enemy12;
+Enemy enemy13;
+Enemy enemy14;
+Enemy enemy15;
+
+//1 række
+Enemy enemy16;
+Enemy enemy17;
+Enemy enemy18;
+Enemy enemy19;
+Enemy enemy20;
+
+
+void setup(){
+  size(800,1000);
+  frameRate(60);
+  enemy1 = new Enemy(260, 100);
+  enemy2 = new Enemy(330, 100);
+  enemy3 = new Enemy(400, 100);
+  enemy4 = new Enemy(470, 100);
+  enemy5 = new Enemy(540, 100);
+  
+  enemy6 = new Enemy(260, 145);
+  enemy7 = new Enemy(330, 145);
+  enemy8 = new Enemy(400, 145);
+  enemy9 = new Enemy(470, 145);
+  enemy10 = new Enemy(540, 145);
+  
+  enemy11 = new Enemy(260, 190);
+  enemy12 = new Enemy(330, 190);
+  enemy13 = new Enemy(400, 190);
+  enemy14 = new Enemy(470, 190);
+  enemy15 = new Enemy(540, 190);
+  
+  enemy16 = new Enemy(260, 235);
+  enemy17 = new Enemy(330, 235);
+  enemy18 = new Enemy(400, 235);
+  enemy19 = new Enemy(470, 235);
+  enemy20 = new Enemy(540, 235);
+}
+
+void draw(){
+  background(0);
+  fill(255);
+  rect(px, py, 50, 30);
+  if(keyPressed == true && key == ' ' && skyd == false){
+    skyd = true;
+    skudx = px + 25;
+    skudy = py - 30;
+  }
+  if(skyd == true){
+    fill(255);
+    rect(skudx, skudy, 2, 30);
+    skudy -= 5;
+    println(skudy);
+    if(skudy <= 0){
+      skyd = false;
+    }
+  }
+  //4 række
+  enemy1.display();
+  enemy2.display();
+  enemy3.display();
+  enemy4.display();
+  enemy5.display();
+  enemy1.enemyMove();
+  enemy2.enemyMove();
+  enemy3.enemyMove();
+  enemy4.enemyMove();
+  enemy5.enemyMove();
+  
+  //3 række
+  enemy6.display();
+  enemy7.display();
+  enemy8.display();
+  enemy9.display();
+  enemy10.display();
+  enemy6.enemyMove();
+  enemy7.enemyMove();
+  enemy8.enemyMove();
+  enemy9.enemyMove();
+  enemy10.enemyMove();
+  
+  //2 række
+  enemy11.display();
+  enemy12.display();
+  enemy13.display();
+  enemy14.display();
+  enemy15.display();
+  enemy11.enemyMove();
+  enemy12.enemyMove();
+  enemy13.enemyMove();
+  enemy14.enemyMove();
+  enemy15.enemyMove();
+  
+  //1 række
+  enemy16.display();
+  enemy17.display();
+  enemy18.display();
+  enemy19.display();
+  enemy20.display();
+  enemy16.enemyMove();
+  enemy17.enemyMove();
+  enemy18.enemyMove();
+  enemy19.enemyMove();
+  enemy20.enemyMove();
+}
+
+class Enemy{
+  boolean death;
+  boolean retning;
+  float count = 200;
+  float enemyX, enemyY;
+  
+  Enemy(float tempX, float tempY){
+    enemyX = tempX;
+    enemyY = tempY;
+  }
+  
+  void display(){
+    if(death == false){
+      fill(255, 0, 0);
+      rectMode(CENTER);
+      rect(enemyX, enemyY, 50, 30);
+    }
+    if(dist(enemyX, enemyY, skudx, skudy) <= 20){
+      death = true;
+      enemyY = 75000;
+      skyd = false;
+    }
+  }
+  
+  void enemyMove(){
+    if(retning == false){
+      count += 1;
+      enemyX += 1;
+      if(count >= width/2){
+        count = 0;
+        enemyY += 20;
+        retning = true;
+      }
+    }
+    if(retning == true){
+      count += 1;
+      enemyX -= 1;
+      if(count >= width/2){
+        count = 0;
+        enemyY += 20;
+        retning = false;
+      }
+    }
+    println(count);
+  }
+}
