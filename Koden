@@ -1,5 +1,7 @@
 
 boolean Deathscreen = true;
+boolean Menuscreen = false;
+
 int Score = int(random(1,2000));
 int HighScore = int(random(2000,3000));
 int niveau = 3;
@@ -12,7 +14,6 @@ void setup(){
 }
 
 void draw(){
-
   background(0);
   
   if(Deathscreen == true){
@@ -28,21 +29,69 @@ void draw(){
       Deathscreen = false;
       fill(0);
       rect(0,0,800,1000);
+      Menuscreen = true;
     }
   }
   
+  if(Menuscreen==true){
+    fill(0);
+    stroke(255);
+    rect(30,64,415,44);
+    rect(30,128,415,44);
+    rect(30,192,415,44);
+    rect(30,256,415,44);
+    rect(30,320,415,44);    
+    
+    fill(255);
+    textSize(32);
+    text("Start",10,32);
+    text("multiplikation",35,96);
+    text("division",35,160);
+    text("addition og subtrahering",35,224);
+    text("brøker og decimalregning",35,288);
+    text("geometri",35,352);
+  }
+  
+ 
+  
   if(test == 0){
     String[] rr = pmgdFunktion("/");
-
     print(""+rr[0]+" "+rr[1]);
   }
   test = 1;
 }
 
 
+void mouseClicked(){
+  if(mouseX>30&&mouseX<445&&mouseY>64&&mouseY<108){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>128&&mouseY<172){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>192&&mouseY<236){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>256&&mouseY<300){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>320&&mouseY<364){
+    Menuscreen=false;
+    fill(0);
+    rect(0,0,800,1000);
+  }
+}
+
 
 //===========================================Funktioner og klasser=================================================
-
 
 
 
@@ -92,7 +141,6 @@ String[] pmgdFunktion (String pmgd){
   
   return(rOgR);
 }
-
 
 
 
