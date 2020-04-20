@@ -292,6 +292,7 @@ String[] geometriFunktion (){
 
 
 
+
 String[] brokFunktion (){
   String regnestykke ="";
   String result ="";
@@ -345,3 +346,4 @@ String[] brokFunktion (){
   String[] rOgR = {""+regnestykke,""+result};
   return(rOgR);
 }
+
