@@ -152,8 +152,7 @@ void mouseClicked(){
     fill(0);
     rect(0,0,800,1000);
   }
-  println(spilValg);
-  println(niveau);
+  
 }
 
 
