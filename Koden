@@ -1,5 +1,10 @@
+
+boolean Deathscreen = true;
+int Score = int(random(1,2000));
+int HighScore = int(random(2000,3000));
 int niveau = 3;
 int test = 0;
+
 
 void setup(){
   size(800,1000);
@@ -7,8 +12,24 @@ void setup(){
 }
 
 void draw(){
-  background(0);  
-  
+background(0);
+
+  if(Deathscreen == true){
+    background(0);
+    textSize(32);
+    text("Highscore:",50,50);
+    text("Score:",50,100);
+    text(HighScore,250,50);
+    text(Score,250,100);
+    text("Game Over",325,500);
+    text("Tryk på en vilkårlig tast for at starte forfra",75,550);
+    fill(255);
+    if(keyPressed == true||mousePressed==true){
+      Deathscreen = false;
+      fill(0);
+      rect(0,0,800,1000);
+    }
+  }
   
   if(test == 0){
     String[] rr = pmgdFunktion("/");
