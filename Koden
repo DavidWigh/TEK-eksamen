@@ -1,1 +1,14 @@
-yeehaw
+String[] brøkFunktion (){
+  String regnestykke ="";
+  String result ="";
+  
+  
+  if(niveau == 1){
+    
+  }else if(niveau == 2){
+  }else if(niveau == 3){
+  }
+  
+  String[] rOgR = {""+regnestykke,""+result};
+  return(rOgR);
+}
