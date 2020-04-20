@@ -1,11 +1,11 @@
+boolean deathscreen = true;
+boolean menuscreen = false;
 
-boolean Deathscreen = true;
-boolean Menuscreen = false;
-
-int Score = int(random(1,2000));
-int HighScore = int(random(2000,3000));
-int niveau = 3;
+int score = int(random(1,2000));
+int highScore = int(random(2000,3000));
+int niveau = 0;
 int test = 0;
+int spilValg=0;
 
 
 void setup(){
@@ -16,75 +16,92 @@ void setup(){
 void draw(){
   background(0);
   
-  if(Deathscreen == true){
+  if(deathscreen == true){
     textSize(32);
     text("Highscore:",50,50);
     text("Score:",50,100);
-    text(HighScore,250,50);
-    text(Score,250,100);
+    text(""+highScore,250,50);
+    text(""+score,250,100);
     text("Game Over",325,500);
     text("Tryk på en vilkårlig tast for at starte forfra",75,550);
     fill(255);
     if(keyPressed == true||mousePressed==true){
-      Deathscreen = false;
+      deathscreen = false;
       fill(0);
       rect(0,0,800,1000);
-      Menuscreen = true;
+      menuscreen = true;
+      mouseX=0;
+      mouseY=0;
     }
   }
   
-  if(Menuscreen==true){
+  if(menuscreen==true){
     fill(0);
     stroke(255);
     rect(30,64,415,44);
     rect(30,128,415,44);
     rect(30,192,415,44);
     rect(30,256,415,44);
-    rect(30,320,415,44);    
+    rect(30,320,415,44);
+    rect(30,457,415,44);
+    rect(30,521,415,44);
+    rect(30,585,415,44);
+    rect(320,768,148,44);
     
     fill(255);
     textSize(32);
-    text("Start",10,32);
+    text("Startmenu",10,32);
     text("multiplikation",35,96);
     text("division",35,160);
     text("addition og subtrahering",35,224);
     text("brøker og decimalregning",35,288);
     text("geometri",35,352);
+    text("Sværhedsgrad",10,425);
+    text("let",35,489);
+    text("medium",35,553);
+    text("svær",35,617);
+    text("start spil",325,800);
   }
   
+  if(deathscreen == false && startmenu == false){
  
   
-  if(test == 0){
-    String[] rr = pmgdFunktion("/");
-    print(""+rr[0]+" "+rr[1]);
+    if(test == 0){
+      String[] rr = pmgdFunktion("/");
+      print(""+rr[0]+" "+rr[1]);
+   }
+    test = 1;
   }
-  test = 1;
 }
 
 
 void mouseClicked(){
   if(mouseX>30&&mouseX<445&&mouseY>64&&mouseY<108){
-    Menuscreen=false;
-    fill(0);
-    rect(0,0,800,1000);
+    spilValg=1;
   }
   if(mouseX>30&&mouseX<445&&mouseY>128&&mouseY<172){
-    Menuscreen=false;
-    fill(0);
-    rect(0,0,800,1000);
+    spilValg=2;
   }
   if(mouseX>30&&mouseX<445&&mouseY>192&&mouseY<236){
-    Menuscreen=false;
-    fill(0);
-    rect(0,0,800,1000);
+    spilValg=3;
   }
   if(mouseX>30&&mouseX<445&&mouseY>256&&mouseY<300){
-    Menuscreen=false;
-    fill(0);
-    rect(0,0,800,1000);
+    spilValg=4;
   }
   if(mouseX>30&&mouseX<445&&mouseY>320&&mouseY<364){
-    Menuscreen=false;
+    spilValg=5;
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>457&&mouseY<501){
+    niveau=1;
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>521&&mouseY<565){
+    niveau=2;
+  }
+  if(mouseX>30&&mouseX<445&&mouseY>585&&mouseY<629){
+    niveau=3;
+  }
+  if(mouseX>320&&mouseX<468&&mouseY>768&&mouseY<812&&niveau>0&&spilValg>0){
+    menuscreen=false;
     fill(0);
     rect(0,0,800,1000);
   }
@@ -222,4 +239,3 @@ String[] geometriFunktion (){
   String[] rOgR = {""+regnestykke,""+result,""+altResult};
   return(rOgR);
 }
-
