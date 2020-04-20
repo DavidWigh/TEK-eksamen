@@ -15,7 +15,6 @@ void draw(){
 background(0);
 
   if(Deathscreen == true){
-    background(0);
     textSize(32);
     text("Highscore:",50,50);
     text("Score:",50,100);
