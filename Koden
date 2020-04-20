@@ -1,8 +1,8 @@
-boolean Deathscreen = true;
-boolean Menuscreen = false;
+boolean deathscreen = true;
+boolean menuscreen = false;
 
-int Score = int(random(1,2000));
-int HighScore = int(random(2000,3000));
+int score = int(random(1,2000));
+int highScore = int(random(2000,3000));
 int niveau = 0;
 int test = 0;
 int spilValg=0;
@@ -16,26 +16,26 @@ void setup(){
 void draw(){
   background(0);
   
-  if(Deathscreen == true){
+  if(deathscreen == true){
     textSize(32);
     text("Highscore:",50,50);
     text("Score:",50,100);
-    text(HighScore,250,50);
-    text(Score,250,100);
+    text(""+highScore,250,50);
+    text(""+score,250,100);
     text("Game Over",325,500);
     text("Tryk på en vilkårlig tast for at starte forfra",75,550);
     fill(255);
     if(keyPressed == true||mousePressed==true){
-      Deathscreen = false;
+      deathscreen = false;
       fill(0);
       rect(0,0,800,1000);
-      Menuscreen = true;
+      menuscreen = true;
       mouseX=0;
       mouseY=0;
     }
   }
   
-  if(Menuscreen==true){
+  if(menuscreen==true){
     fill(0);
     stroke(255);
     rect(30,64,415,44);
@@ -63,13 +63,15 @@ void draw(){
     text("start spil",325,800);
   }
   
+  if(deathscreen == false && startmenu == false){
  
   
-  if(test == 0){
-    String[] rr = pmgdFunktion("/");
-    print(""+rr[0]+" "+rr[1]);
+    if(test == 0){
+      String[] rr = pmgdFunktion("/");
+      print(""+rr[0]+" "+rr[1]);
+   }
+    test = 1;
   }
-  test = 1;
 }
 
 
@@ -99,7 +101,7 @@ void mouseClicked(){
     niveau=3;
   }
   if(mouseX>320&&mouseX<468&&mouseY>768&&mouseY<812&&niveau>0&&spilValg>0){
-    Menuscreen=false;
+    menuscreen=false;
     fill(0);
     rect(0,0,800,1000);
   }
