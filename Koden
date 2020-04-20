@@ -1,10 +1,23 @@
 String[] brøkFunktion (){
   String regnestykke ="";
   String result ="";
-  
+  int a;
+  int b;
+  int c;
+  int d;
   
   if(niveau == 1){
-    
+    a = int(random(1,10));
+    b = int(random(1,a));
+    c = int(random(1,10));
+    d = floor(random(1,1.9));
+    if(d == 0){
+      regnestykke = ""+b+"/"+a;
+      result = "";
+    }else if(d == 1){
+      regnestykke = "";
+      result = "";
+    }
   }else if(niveau == 2){
   }else if(niveau == 3){
   }
