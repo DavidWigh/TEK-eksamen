@@ -1,20 +1,23 @@
 float px = 400;
 float py = 880;
-float skudx, skudy;
-boolean skyd;
+
+
 int niveau = 0;
 int test = 0;
 boolean deathscreen;
-boolean menuscreen;
+boolean menuscreen = true;
 
-int score = int(random(1,2000));
-int highScore = int(random(2000,3000));
+int score = 0;
+int highScore = 0;
 int spilValg = 0;
 
 StringList tekst;
-String[] ja = {""};
-String kage;
+String[] tekstArray = {""};
+String displayText = "";
 
+PFont Font;
+
+int wave = 1;
 
 //4 række
 Enemy enemy1;
@@ -48,31 +51,35 @@ Enemy enemy20;
 void setup(){
   size(800,1000);
   frameRate(60);
-  enemy1 = new Enemy(260, 100);
-  enemy2 = new Enemy(330, 100);
-  enemy3 = new Enemy(400, 100);
-  enemy4 = new Enemy(470, 100);
-  enemy5 = new Enemy(540, 100);
+  enemy1 = new Enemy(240, 100);
+  enemy2 = new Enemy(325, 100);
+  enemy3 = new Enemy(410, 100);
+  enemy4 = new Enemy(495, 100);
+  enemy5 = new Enemy(580, 100);
   
-  enemy6 = new Enemy(260, 145);
-  enemy7 = new Enemy(330, 145);
-  enemy8 = new Enemy(400, 145);
-  enemy9 = new Enemy(470, 145);
-  enemy10 = new Enemy(540, 145);
+  enemy6 = new Enemy(240, 165);
+  enemy7 = new Enemy(325, 165);
+  enemy8 = new Enemy(410, 165);
+  enemy9 = new Enemy(495, 165);
+  enemy10 = new Enemy(580, 165);
   
-  enemy11 = new Enemy(260, 190);
-  enemy12 = new Enemy(330, 190);
-  enemy13 = new Enemy(400, 190);
-  enemy14 = new Enemy(470, 190);
-  enemy15 = new Enemy(540, 190);
+  enemy11 = new Enemy(240, 230);
+  enemy12 = new Enemy(325, 230);
+  enemy13 = new Enemy(410, 230);
+  enemy14 = new Enemy(495, 230);
+  enemy15 = new Enemy(580, 230);
   
-  enemy16 = new Enemy(260, 235);
-  enemy17 = new Enemy(330, 235);
-  enemy18 = new Enemy(400, 235);
-  enemy19 = new Enemy(470, 235);
-  enemy20 = new Enemy(540, 235);
+  enemy16 = new Enemy(240, 295);
+  enemy17 = new Enemy(325, 295);
+  enemy18 = new Enemy(410, 295);
+  enemy19 = new Enemy(495, 295);
+  enemy20 = new Enemy(580, 295);
   
   tekst = new StringList();
+  
+  //enemy1.startbitch();
+  
+  Font = createFont("Arial Bold", 18);
 }
 
 void draw(){
@@ -93,9 +100,13 @@ void draw(){
       menuscreen = true;
       mouseX=0;
       mouseY=0;
+      background(0);
+      spilValg = 0;
+      niveau = 0;
     }
   }
-  if(menuscreen==true){
+  if(menuscreen == true){
+    rectMode(CORNER);
     fill(0);
     stroke(255);
     rect(30,64,415,44);
@@ -158,106 +169,136 @@ void draw(){
     fill(255);
     textSize(32);
     text("Startmenu",10,32);
-    text("multiplikation",35,96);
-    text("division",35,160);
-    text("addition og subtrahering",35,224);
-    text("brøker og decimalregning",35,288);
-    text("geometri",35,352);
+    text("Addition og substrahering",35,96);
+    text("Multiplikation",35,160);
+    text("Division",35,224);
+    text("Geometri",35,288);
+    text("Brøker og decimalregning",35,352);
     text("Sværhedsgrad",10,425);
-    text("let",35,489);
-    text("medium",35,553);
-    text("svær",35,617);
-    text("start spil",325,800);
+    text("Let",35,489);
+    text("Medium",35,553);
+    text("Svær",35,617);
+    text("Start spil",325,800);
   }
   if(deathscreen == false && menuscreen == false){
-    if(test == 0){
-      String[] rr = brokFunktion();
-      //print(""+rr[0]+" "+rr[1]);
-   }
-  test = 1;
-  
-  noStroke();
-  fill(255);
-  rect(px, py, 50, 30);
-  if(keyPressed == true && key == ' ' && skyd == false){
-    skyd = true;
-    skudx = px;
-    skudy = py - 30;
-  }
-  if(skyd == true){
     fill(255);
-    ellipse(skudx, skudy, 10, 10);
-    skudy -= 5;
-    if(skudy <= 0){
-      skyd = false;
+    textSize(25);
+    text("Score: "+score, 50, 30);
+    textSize(25);
+    text("Highscore: "+highScore, 50, 60);
+  
+    noStroke();
+    fill(255);
+    rect(px, py, 50, 30);
+    
+    stroke(255);
+    fill(0);
+    rect(400, 950, 670, 50);
+    fill(255);
+    textSize(32);
+    text(""+displayText, 75, 963);
+  
+  
+    noStroke();
+    //4 række
+    enemy1.display();
+    enemy2.display();
+    enemy3.display();
+    enemy4.display();
+    enemy5.display();
+    enemy1.enemyMove();
+    enemy2.enemyMove();
+    enemy3.enemyMove();
+    enemy4.enemyMove();
+    enemy5.enemyMove();
+  
+    //3 række
+    enemy6.display();
+    enemy7.display();
+    enemy8.display();
+    enemy9.display();
+    enemy10.display();
+    enemy6.enemyMove();
+    enemy7.enemyMove();
+    enemy8.enemyMove();
+    enemy9.enemyMove();
+    enemy10.enemyMove();
+    
+    //2 række
+    enemy11.display();
+    enemy12.display();
+    enemy13.display();
+    enemy14.display();
+    enemy15.display();
+    enemy11.enemyMove();
+    enemy12.enemyMove();
+    enemy13.enemyMove();
+    enemy14.enemyMove();
+    enemy15.enemyMove();
+  
+    //1 række
+    enemy16.display();
+    enemy17.display();
+    enemy18.display();
+    enemy19.display();
+    enemy20.display();
+    enemy16.enemyMove();
+    enemy17.enemyMove();
+    enemy18.enemyMove();
+    enemy19.enemyMove();
+    enemy20.enemyMove();
     }
+  
+    if(enemy1.death == true && enemy2.death == true && enemy3.death == true && enemy4.death == true && enemy5.death == true && enemy6.death == true && enemy7.death == true && enemy8.death == true && enemy9.death == true && enemy10.death == true && enemy11.death == true && enemy12.death == true && enemy13.death == true && enemy14.death == true && enemy15.death == true && enemy16.death == true && enemy17.death == true && enemy18.death == true && enemy19.death == true && enemy20.death == true){
+      rectMode(CENTER);
+      enemy1.death = false; enemy1.enemyX = 240; enemy1.enemyY = 100; enemy1.count = 200; enemy1.stop = false; enemy1.retning = false;
+      enemy2.death = false; enemy2.enemyX = 325; enemy2.enemyY = 100; enemy2.count = 200; enemy2.stop = false; enemy2.retning = false;
+      enemy3.death = false; enemy3.enemyX = 410; enemy3.enemyY = 100; enemy3.count = 200; enemy3.stop = false; enemy3.retning = false;
+      enemy4.death = false; enemy4.enemyX = 495; enemy4.enemyY = 100; enemy4.count = 200; enemy4.stop = false; enemy4.retning = false;
+      enemy5.death = false; enemy5.enemyX = 580; enemy5.enemyY = 100; enemy5.count = 200; enemy5.stop = false; enemy5.retning = false;
+      
+      enemy6.death = false; enemy6.enemyX = 240; enemy6.enemyY = 165; enemy6.count = 200; enemy6.stop = false; enemy6.retning = false;
+      enemy7.death = false; enemy7.enemyX = 325; enemy7.enemyY = 165; enemy7.count = 200; enemy7.stop = false; enemy7.retning = false;
+      enemy8.death = false; enemy8.enemyX = 410; enemy8.enemyY = 165; enemy8.count = 200; enemy8.stop = false; enemy8.retning = false;
+      enemy9.death = false; enemy9.enemyX = 495; enemy9.enemyY = 165; enemy9.count = 200; enemy9.stop = false; enemy9.retning = false;
+      enemy10.death = false; enemy10.enemyX = 580; enemy10.enemyY = 165; enemy10.count = 200; enemy10.stop = false; enemy10.retning = false;
+      
+      enemy11.death = false; enemy11.enemyX = 240; enemy11.enemyY = 230; enemy11.count = 200; enemy11.stop = false; enemy11.retning = false;
+      enemy12.death = false; enemy12.enemyX = 325; enemy12.enemyY = 230; enemy12.count = 200; enemy12.stop = false; enemy12.retning = false;
+      enemy13.death = false; enemy13.enemyX = 410; enemy13.enemyY = 230; enemy13.count = 200; enemy13.stop = false; enemy13.retning = false;
+      enemy14.death = false; enemy14.enemyX = 495; enemy14.enemyY = 230; enemy14.count = 200; enemy14.stop = false; enemy14.retning = false;
+      enemy15.death = false; enemy15.enemyX = 580; enemy15.enemyY = 230; enemy15.count = 200; enemy15.stop = false; enemy15.retning = false;
+      
+      enemy16.death = false; enemy16.enemyX = 240; enemy16.enemyY = 295; enemy16.count = 200; enemy16.stop = false; enemy16.retning = false;
+      enemy17.death = false; enemy17.enemyX = 325; enemy17.enemyY = 295; enemy17.count = 200; enemy17.stop = false; enemy17.retning = false;
+      enemy18.death = false; enemy18.enemyX = 410; enemy18.enemyY = 295; enemy18.count = 200; enemy18.stop = false; enemy18.retning = false;
+      enemy19.death = false; enemy19.enemyX = 495; enemy19.enemyY = 295; enemy19.count = 200; enemy19.stop = false; enemy19.retning = false;
+      enemy20.death = false; enemy20.enemyX = 580; enemy20.enemyY = 295; enemy20.count = 200; enemy20.stop = false; enemy20.retning = false;
+      wave += 1;
+    }
+  
+    if(enemy1.cText == true || enemy2.cText == true || enemy3.cText == true || enemy4.cText == true || enemy5.cText == true || enemy6.cText == true || enemy7.cText == true || enemy8.cText == true || enemy9.cText == true || enemy10.cText == true || enemy11.cText == true || enemy12.cText == true || enemy13.cText == true || enemy14.cText == true || enemy15.cText == true || enemy16.cText == true || enemy17.cText == true || enemy18.cText == true || enemy19.cText == true || enemy20.cText == true){
+      tekst.clear();
+      displayText = "";
+    }
+    score = score + enemy1.point + enemy2.point + enemy3.point + enemy4.point + enemy5.point + enemy6.point + enemy7.point + enemy8.point + enemy9.point + enemy10.point + enemy11.point + enemy12.point + enemy13.point + enemy14.point + enemy15.point + enemy16.point + enemy17.point + enemy18.point + enemy19.point + enemy20.point;
+    if(score > highScore){
+      highScore = score;
+    }
+    if(enemy1.gameEnd == true || enemy2.gameEnd == true || enemy3.gameEnd == true  || enemy4.gameEnd == true  || enemy5.gameEnd == true  || enemy6.gameEnd == true  || enemy7.gameEnd == true  || enemy8.gameEnd == true  || enemy9.gameEnd == true  || enemy10.gameEnd == true  || enemy11.gameEnd == true  || enemy12.gameEnd == true  || enemy13.gameEnd == true  || enemy14.gameEnd == true  || enemy15.gameEnd == true  || enemy16.gameEnd == true  || enemy17.gameEnd == true  || enemy18.gameEnd == true  || enemy19.gameEnd == true  || enemy20.gameEnd == true){
+      deathscreen = true;
+      enemy1.death = true; enemy2.death = true; enemy3.death = true; enemy4.death = true; enemy5.death = true; enemy6.death = true; enemy7.death = true; enemy8.death = true; enemy9.death = true; enemy10.death = true; enemy11.death = true; enemy12.death = true; enemy13.death = true; enemy14.death = true; enemy15.death = true; enemy16.death = true; enemy17.death = true; enemy18.death = true; enemy19.death = true; enemy20.death = true;
+      enemy1.enemyY = -75000; enemy2.enemyY = -75000; enemy3.enemyY = -75000; enemy4.enemyY = -75000; enemy5.enemyY = -75000; enemy6.enemyY = -75000; enemy7.enemyY = -75000; enemy8.enemyY = -75000; enemy9.enemyY = -75000; enemy10.enemyY = -75000; enemy11.enemyY = -75000; enemy12.enemyY = -75000; enemy13.enemyY = -75000; enemy14.enemyY = -75000; enemy15.enemyY = -75000; enemy16.enemyY = -75000; enemy17.enemyY = -75000; enemy18.enemyY = -75000; enemy19.enemyY = -75000; enemy20.enemyY = -75000;
+      enemy1.gameEnd = false; enemy2.gameEnd = false; enemy3.gameEnd = false; enemy4.gameEnd = false; enemy5.gameEnd = false; enemy6.gameEnd = false; enemy7.gameEnd = false; enemy8.gameEnd = false; enemy9.gameEnd = false; enemy10.gameEnd = false; enemy11.gameEnd = false; enemy12.gameEnd = false; enemy13.gameEnd = false; enemy14.gameEnd = false; enemy15.gameEnd = false; enemy16.gameEnd = false; enemy17.gameEnd = false; enemy18.gameEnd = false; enemy19.gameEnd = false; enemy20.gameEnd = false;
+      wave = 0;
+      score = 0;
+    }
+    
   }
-  
-  for (int i = 0; i < ja.length; i++) {
-    kage = ""+kage+""+ja[i];
-  }
-  stroke(255);
-  fill(0);
-  rect(400, 950, 670, 50);
-  fill(255);
-  textSize(32);
-  text(""+kage, 75, 963);
-  
-  kage = "";
-  
-  
-  noStroke();
-  //4 række
-  enemy1.display();
-  enemy2.display();
-  enemy3.display();
-  enemy4.display();
-  enemy5.display();
-  enemy1.enemyMove();
-  enemy2.enemyMove();
-  enemy3.enemyMove();
-  enemy4.enemyMove();
-  enemy5.enemyMove();
-  
-  //3 række
-  enemy6.display();
-  enemy7.display();
-  enemy8.display();
-  enemy9.display();
-  enemy10.display();
-  enemy6.enemyMove();
-  enemy7.enemyMove();
-  enemy8.enemyMove();
-  enemy9.enemyMove();
-  enemy10.enemyMove();
-  
-  //2 række
-  enemy11.display();
-  enemy12.display();
-  enemy13.display();
-  enemy14.display();
-  enemy15.display();
-  enemy11.enemyMove();
-  enemy12.enemyMove();
-  enemy13.enemyMove();
-  enemy14.enemyMove();
-  enemy15.enemyMove();
-  
-  //1 række
-  enemy16.display();
-  enemy17.display();
-  enemy18.display();
-  enemy19.display();
-  enemy20.display();
-  enemy16.enemyMove();
-  enemy17.enemyMove();
-  enemy18.enemyMove();
-  enemy19.enemyMove();
-  enemy20.enemyMove();
-  }
-}
+
 
 void keyTyped(){
+  displayText = "";
   if(int(key) != 10){
     tekst.append(""+key);
   }
@@ -270,12 +311,15 @@ void keyTyped(){
     tekst.remove(tekst.size()-1);
   }
  
-  ja = tekst.array();
+  tekstArray = tekst.array();
  
-  for (int i=0; i < ja.length; i++) {
-      print(ja[i]);
+  for (int i=0; i < tekstArray.length; i++) {
+      print(tekstArray[i]);
   }
   println("");
+  for (int i = 0; i < tekstArray.length; i++) {
+    displayText = ""+displayText+""+tekstArray[i];
+  }
 }
 
 void mouseClicked(){
@@ -315,41 +359,152 @@ class Enemy{
   boolean retning;
   float count = 200;
   float enemyX, enemyY;
+  boolean stop;
+  String regnestykke = "";
+  String result = "";
+  String altResult = "";
+  int a;
+  String[] rr;
+  float skudx, skudy;
+  boolean skyd;
+  boolean cText;
+  int point = 0;
+
+  boolean active;
+  
+  boolean gameEnd;
   
   Enemy(float tempX, float tempY){
     enemyX = tempX;
     enemyY = tempY;
   }
-  
+
   void display(){
-    if(death == false){
-      fill(255, 0, 0);
-      rectMode(CENTER);
-      rect(enemyX, enemyY, 50, 30);
+    if(stop == false){
+      if(spilValg == 1){
+        a = floor(random(0,1.9));
+        if(a == 0){
+          rr = pmgdFunktion("+");
+          regnestykke = rr[0];
+          result = rr[1];
+        }else if(a == 1){
+          rr = pmgdFunktion("-");
+          regnestykke = rr[0];
+          result = rr[1];
+        }
+      }
+      if(spilValg == 2){
+        rr = pmgdFunktion("*");
+        regnestykke = rr[0];
+        result = rr[1];
+      }
+      if(spilValg == 3){
+        rr = pmgdFunktion("/");
+        regnestykke = rr[0];
+        result = rr[1];
+      }
+      if(spilValg == 4){
+        rr = geometriFunktion();
+        regnestykke = rr[0];
+        result = rr[1];
+        altResult = rr[2];
+      }
+      if(spilValg == 5){
+        rr = brokFunktion();
+        regnestykke = rr[0];
+        result = rr[1];
+      }
+      stop = true;
     }
+
+    fill(255, 0, 0);
+    rectMode(CENTER);
+    rect(enemyX, enemyY, 80, 60);
+    fill(255);
+    textFont(Font);
+    textSize(9);
+    textLeading(9);
+    text(""+regnestykke, enemyX, enemyY, 80, 60);
+   
+    println("*"+displayText+"*  *"+result+"*");
+    cText = false;
+    if(int(result) == int(displayText) && skyd == false && death == false && active == true){
+      println("yoink");
+      skyd = true;
+      skudx = px;
+      skudy = py - 30;
+      cText = true;
+      displayText = "";
+    }
+    if(skyd == true){
+      fill(255);
+      ellipse(skudx, skudy, 10, 10);
+      skudy -= 5;
+      skudx = enemyX;
+    }
+    point = 0;
     if(dist(enemyX, enemyY, skudx, skudy) <= 20){
       death = true;
-      enemyY = 75000;
+      enemyY = -75000;
       skyd = false;
-      skudy = 75000;
+      skudy = -76000;
+      point = 10;
     }
+    if(enemyY >= 850){
+      gameEnd = true;
+    }
+    if(enemy6.enemyY > enemyY && enemy6.enemyX <= enemyX+1 && enemy6.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy7.enemyY > enemyY && enemy7.enemyX <= enemyX+1 && enemy7.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy8.enemyY > enemyY && enemy8.enemyX <= enemyX+1 && enemy8.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy9.enemyY > enemyY && enemy9.enemyX <= enemyX+1 && enemy9.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy10.enemyY > enemyY && enemy10.enemyX <= enemyX+1 && enemy10.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy11.enemyY > enemyY && enemy11.enemyX <= enemyX+1 && enemy11.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy12.enemyY > enemyY && enemy12.enemyX <= enemyX+1 && enemy12.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy13.enemyY > enemyY && enemy13.enemyX <= enemyX+1 && enemy13.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy14.enemyY > enemyY && enemy14.enemyX <= enemyX+1 && enemy14.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy15.enemyY > enemyY && enemy15.enemyX <= enemyX+1 && enemy15.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy16.enemyY > enemyY && enemy16.enemyX <= enemyX+1 && enemy16.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy17.enemyY > enemyY && enemy17.enemyX <= enemyX+1 && enemy17.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy18.enemyY > enemyY && enemy18.enemyX <= enemyX+1 && enemy18.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy19.enemyY > enemyY && enemy19.enemyX <= enemyX+1 && enemy19.enemyX >= enemyX-1){
+      active = false;
+    }else if(enemy20.enemyY > enemyY && enemy20.enemyX <= enemyX+1 && enemy20.enemyX >= enemyX-1){
+      active = false;
+    }else{
+      active = true;
+    }
+    
   }
+  
   void enemyMove(){
     if(retning == false){
       count += 1;
       enemyX += 1;
-      if(count >= width/2){
+      if(count >= width/2 - 20){
         count = 0;
-        enemyY += 10;
+        enemyY += 10 * wave;
         retning = true;
       }
     }
     if(retning == true){
       count += 1;
       enemyX -= 1;
-      if(count >= width/2){
+      if(count >= width/2 - 20){
         count = 0;
-        enemyY += 10;
+        enemyY += 10 * wave;
         retning = false;
       }
     }
