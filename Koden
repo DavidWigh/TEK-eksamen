@@ -421,7 +421,6 @@ class Enemy{
     textSize(9);
     textLeading(9);
     
-    text(""+regnestykke, enemyX, enemyY, 80, 60);
     
     println("*"+displayText+"*  *"+result+"*");
     
