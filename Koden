@@ -359,7 +359,7 @@ class Enemy{
   boolean stop;
   String regnestykke = "";
   String result = "";
-  String altResult = "hak";
+  String altResult = "hack";
   int a;
   String[] rr;
   float skudx, skudy;
@@ -413,7 +413,7 @@ class Enemy{
       stop = true;
     }
 
-    fill(255, 0, 0);
+    fill(0, 0, 255);
     rectMode(CENTER);
     rect(enemyX, enemyY, 80, 60);
     fill(255);
@@ -453,34 +453,64 @@ class Enemy{
     }
     if(enemy6.enemyY > enemyY && enemy6.enemyX <= enemyX+1 && enemy6.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy7.enemyY > enemyY && enemy7.enemyX <= enemyX+1 && enemy7.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy8.enemyY > enemyY && enemy8.enemyX <= enemyX+1 && enemy8.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy9.enemyY > enemyY && enemy9.enemyX <= enemyX+1 && enemy9.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy10.enemyY > enemyY && enemy10.enemyX <= enemyX+1 && enemy10.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy11.enemyY > enemyY && enemy11.enemyX <= enemyX+1 && enemy11.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy12.enemyY > enemyY && enemy12.enemyX <= enemyX+1 && enemy12.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy13.enemyY > enemyY && enemy13.enemyX <= enemyX+1 && enemy13.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy14.enemyY > enemyY && enemy14.enemyX <= enemyX+1 && enemy14.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy15.enemyY > enemyY && enemy15.enemyX <= enemyX+1 && enemy15.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy16.enemyY > enemyY && enemy16.enemyX <= enemyX+1 && enemy16.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy17.enemyY > enemyY && enemy17.enemyX <= enemyX+1 && enemy17.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy18.enemyY > enemyY && enemy18.enemyX <= enemyX+1 && enemy18.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy19.enemyY > enemyY && enemy19.enemyX <= enemyX+1 && enemy19.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else if(enemy20.enemyY > enemyY && enemy20.enemyX <= enemyX+1 && enemy20.enemyX >= enemyX-1){
       active = false;
+      fill(255,0,0);
+      rect(enemyX, enemyY, 80 ,60);
     }else{
       active = true;
     }
