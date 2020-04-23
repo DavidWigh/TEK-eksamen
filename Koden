@@ -98,6 +98,7 @@ void draw(){
       mouseY=0;
       spilValg = 0;
       niveau = 0;
+      score = 0;
     }
   }
   if(menuscreen == true){
@@ -289,7 +290,6 @@ void draw(){
       enemy1.enemyY = -75000; enemy2.enemyY = -75000; enemy3.enemyY = -75000; enemy4.enemyY = -75000; enemy5.enemyY = -75000; enemy6.enemyY = -75000; enemy7.enemyY = -75000; enemy8.enemyY = -75000; enemy9.enemyY = -75000; enemy10.enemyY = -75000; enemy11.enemyY = -75000; enemy12.enemyY = -75000; enemy13.enemyY = -75000; enemy14.enemyY = -75000; enemy15.enemyY = -75000; enemy16.enemyY = -75000; enemy17.enemyY = -75000; enemy18.enemyY = -75000; enemy19.enemyY = -75000; enemy20.enemyY = -75000;
       enemy1.gameEnd = false; enemy2.gameEnd = false; enemy3.gameEnd = false; enemy4.gameEnd = false; enemy5.gameEnd = false; enemy6.gameEnd = false; enemy7.gameEnd = false; enemy8.gameEnd = false; enemy9.gameEnd = false; enemy10.gameEnd = false; enemy11.gameEnd = false; enemy12.gameEnd = false; enemy13.gameEnd = false; enemy14.gameEnd = false; enemy15.gameEnd = false; enemy16.gameEnd = false; enemy17.gameEnd = false; enemy18.gameEnd = false; enemy19.gameEnd = false; enemy20.gameEnd = false;
       wave = 0;
-      score = 0;
     }
   }
 
