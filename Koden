@@ -447,7 +447,7 @@ class Enemy{
       skudy = -76000;
       point = 10;
     }
-    if(enemyY >= py - 15){
+    if(enemyY >= py - 50){
       gameEnd = true;
     }
     if(enemy6.enemyY > enemyY && enemy6.enemyX <= enemyX+1 && enemy6.enemyX >= enemyX-1){
